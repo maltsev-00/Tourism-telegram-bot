@@ -12,4 +12,5 @@ public interface TownRepository extends MongoRepository<Town, UUID> {
     Town findTownById(UUID id);
 
     Town findTownByName(String town);
+
 }
