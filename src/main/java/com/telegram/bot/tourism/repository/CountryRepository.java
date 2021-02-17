@@ -11,5 +11,5 @@ public interface CountryRepository extends MongoRepository<Country, UUID> {
 
     Country findCountryById(UUID id);
 
-    Country findByName(String country);
+    Country findCountryByName(String country);
 }

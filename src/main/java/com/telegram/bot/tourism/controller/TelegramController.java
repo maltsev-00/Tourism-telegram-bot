@@ -1,7 +1,6 @@
 package com.telegram.bot.tourism.controller;
 
 
-import com.github.kshashov.telegram.api.TelegramMvcController;
 import com.github.kshashov.telegram.api.bind.annotation.BotController;
 import com.github.kshashov.telegram.api.bind.annotation.BotPathVariable;
 import com.github.kshashov.telegram.api.bind.annotation.request.MessageRequest;
@@ -19,7 +18,7 @@ public class TelegramController extends TelegramConfig {
 
     @MessageRequest("{country}")
     public String getInfoAboutCountry(@BotPathVariable("country") String country) {
-        return telegramBotService.getCountry(country);
+        return telegramBotService.getInformationAboutCountry(country);
     }
 
 }

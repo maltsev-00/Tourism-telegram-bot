@@ -53,9 +53,9 @@ public class CountryServiceImpl implements CountryService, TelegramBotService {
     }
 
     @Override
-    public String getCountry(String country) {
+    public String getInformationAboutCountry(String country) {
 
-        Country countryFind = countryRepository.findByName(country);
+        Country countryFind = countryRepository.findCountryByName(country);
 
         if(countryFind!=null)
             return countryFind.getInformationAboutCountry();
