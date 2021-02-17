@@ -1,0 +1,9 @@
+spring:
+  data.mongodb:
+    host: localhost
+    port: 27017
+    database: tourism
+
+
+telegram:
+  bot-token: 1351183749:AAGwYDTUsqEz2dbba01yHEiVWrWx1EWRiM8
