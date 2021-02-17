@@ -40,8 +40,9 @@ public class TownServiceImpl implements TownService, TelegramBotService {
 
         if(townFind ==null){
             throw new ResponseStatusException
-                    (HttpStatus.NOT_FOUND,"Not found id : "+ townForDelete.getId());
+                    (HttpStatus.NOT_FOUND,"Not found id town : "+ townForDelete.getId());
         }
+
         townRepository.deleteById(townFind.getId());
 
         return townMapper.toTownDto(townForDelete);
@@ -54,7 +55,7 @@ public class TownServiceImpl implements TownService, TelegramBotService {
 
         if(townFind ==null){
             throw new ResponseStatusException
-                    (HttpStatus.NOT_FOUND,"Not found id : "+ townForRedaction.getId());
+                    (HttpStatus.NOT_FOUND,"Not found id town : "+ townForRedaction.getId());
         }
         return townMapper
                 .toTownDto(townRepository.save(townForRedaction));
@@ -66,10 +67,11 @@ public class TownServiceImpl implements TownService, TelegramBotService {
 
         Town townFind = townRepository.findTownByName(country);
 
-        if(townFind !=null)
-            return townFind.getInformationAboutCountry();
-        else
-            return country+" not found, please try again ";
+        if(townFind == null) {
+            return "Not found information about city : "+country;
+        }
+
+        return townFind.getInformationAboutCountry();
     }
 
 }
