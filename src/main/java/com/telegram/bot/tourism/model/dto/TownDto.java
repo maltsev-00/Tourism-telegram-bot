@@ -10,7 +10,7 @@ import javax.validation.constraints.NotEmpty;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class CountryDto {
+public class TownDto {
 
     @NotEmpty
     @Length(max = 25)

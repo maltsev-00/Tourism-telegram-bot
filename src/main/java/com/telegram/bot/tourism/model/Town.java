@@ -15,18 +15,18 @@ import java.util.UUID;
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-public class Country {
+public class Town {
 
     @Id
-    @NotNull
+    @NotNull(message = "Id not can be null")
     private UUID id;
 
-    @NotEmpty
-    @Length(max = 25)
+    @NotEmpty(message = "Name not can be empty")
+    @Length(max = 25, message = "Length name max be 25")
     private String name;
 
-    @NotEmpty
-    @Length(max = 300)
+    @NotEmpty(message = "Information not can be empty")
+    @Length(max = 300,  message = "Length information max be 300")
     private String informationAboutCountry;
 
 }

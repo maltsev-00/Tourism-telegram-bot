@@ -16,9 +16,9 @@ public class TelegramController extends TelegramConfig {
 
     private final TelegramBotService telegramBotService;
 
-    @MessageRequest("{country}")
-    public String getInfoAboutCountry(@BotPathVariable("country") String country) {
-        return telegramBotService.getInformationAboutCountry(country);
+    @MessageRequest("{town}")
+    public String getInfoAboutTown(@BotPathVariable("town") String town) {
+        return telegramBotService.getInformationAboutTown(town);
     }
 
 }

@@ -7,3 +7,8 @@ spring:
 
 telegram:
   bot-token: 1356207717:AAFLj-q2nkqD9GrLsJk9knZM9bx6WTso_dE
+
+server:
+  error:
+    include-message: always
+
