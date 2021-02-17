@@ -11,6 +11,8 @@ import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
 import org.springframework.web.server.ResponseStatusException;
 
+import java.util.UUID;
+
 
 @Service
 @Data
@@ -30,22 +32,22 @@ public class TownServiceImpl implements TownService, TelegramBotService {
         }
 
         throw new ResponseStatusException
-                (HttpStatus.BAD_REQUEST,"Town with name : "+ townFind.getName()+" was founded ");
+                (HttpStatus.BAD_REQUEST,"Town with name : "+ townFind.getName()+" was founded in database");
     }
 
     @Override
-    public TownDto deleteTown(Town townForDelete) {
+    public TownDto deleteTown(UUID id) {
 
-        Town townFind = townRepository.findTownById(townForDelete.getId());
+        Town townFind = townRepository.findTownById(id);
 
         if(townFind == null){
             throw new ResponseStatusException
-                    (HttpStatus.NOT_FOUND,"Not found id town : "+ townForDelete.getId());
+                    (HttpStatus.NOT_FOUND,"City ID not found : "+ id);
         }
 
-        townRepository.deleteById(townFind.getId());
+        townRepository.delete(townFind);
 
-        return townMapper.toTownDto(townForDelete);
+        return townMapper.toTownDto(townFind);
     }
 
     @Override
@@ -55,7 +57,7 @@ public class TownServiceImpl implements TownService, TelegramBotService {
 
         if(townFind == null){
             throw new ResponseStatusException
-                    (HttpStatus.NOT_FOUND,"Not found id town : "+ townForRedaction.getId());
+                    (HttpStatus.NOT_FOUND,"City ID not found : "+ townForRedaction.getId());
         }
         return townMapper
                 .toTownDto(townRepository.save(townForRedaction));

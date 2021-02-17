@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
+import java.util.UUID;
 
 @RestController
 @RequestMapping("town")
@@ -18,20 +19,20 @@ public class TownController {
     private final TownService townService;
 
     @PostMapping
-    public TownDto createNewTown(@Valid @RequestBody Town town){
-        log.info("Add new town in database : "+ town.toString());
+    public TownDto addNewTownInDatabase(@Valid @RequestBody Town town){
+        log.info("Add new town in database : " + town.toString());
         return townService.addNewTown(town);
     }
 
     @DeleteMapping
-    public TownDto deleteTownInDatabase(@Valid @RequestBody Town town){
-        log.info("Delete country in database : "+ town.toString());
-        return townService.deleteTown(town);
+    public TownDto deleteTownInDatabase(@RequestParam UUID townId){
+        log.info("Delete town in database by ID : " + townId);
+        return townService.deleteTown(townId);
     }
 
     @PutMapping
     public TownDto changeTownInDatabase(@Valid @RequestBody Town town){
-        log.info("Redaction town in database : "+ town.toString());
+        log.info("Redaction town in database : " + town.toString());
         return townService.redactionTown(town);
     }
 
