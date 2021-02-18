@@ -78,7 +78,7 @@ public class TownServiceImpl implements TownService, TelegramBotService {
             return "Not found information about city : "+city;
         }
 
-        return townFind.getInformationAboutCountry();
+        return townFind.getInformationAboutCity();
     }
 
 }
