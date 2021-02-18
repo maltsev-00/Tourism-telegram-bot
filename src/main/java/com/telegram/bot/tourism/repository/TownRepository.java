@@ -8,8 +8,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface TownRepository extends JpaRepository<Town, Long> {
 
-    Town findTownByIdAndName(Long id,String nameTown);
-
     Town findTownByName(String nameTown);
 
     Town findTownById(Long id);
