@@ -7,7 +7,7 @@ import java.util.UUID;
 
 public interface TownService {
 
-    TownDto addNewTown(Town newTown);
+    TownDto addNewTown(TownDto newTown);
 
     TownDto deleteTown(UUID id);
 

@@ -19,9 +19,9 @@ public class TownController {
     private final TownService townService;
 
     @PostMapping
-    public TownDto addNewTownInDatabase(@Valid @RequestBody Town town){
-        log.info("Add new town in database : " + town.toString());
-        return townService.addNewTown(town);
+    public TownDto addNewTownInDatabase(@Valid @RequestBody TownDto townDto){
+        log.info("Add new town in database : " + townDto.toString());
+        return townService.addNewTown(townDto);
     }
 
     @DeleteMapping

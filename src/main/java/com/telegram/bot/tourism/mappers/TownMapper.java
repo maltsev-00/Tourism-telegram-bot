@@ -9,4 +9,6 @@ public interface TownMapper {
 
     TownDto toTownDto(Town town);
 
+    Town toTown(TownDto town);
+
 }
