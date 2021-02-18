@@ -25,10 +25,10 @@ public class TownServiceImpl implements TownService, TelegramBotService {
     public TownDto addNewTown(TownDto newTown) {
 
         if(townRepository.findTownByName(newTown.getName()) == null){
-
-            Town town = townMapper.toTown(newTown);
-
-            return townMapper.toTownDto(townRepository.save(town));
+           
+            townRepository.save(townMapper.toTown(newTown));
+            
+            return newTown;
         }
 
         throw new ResponseStatusException
