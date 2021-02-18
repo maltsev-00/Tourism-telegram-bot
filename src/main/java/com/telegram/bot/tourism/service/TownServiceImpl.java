@@ -54,8 +54,8 @@ public class TownServiceImpl implements TownService, TelegramBotService {
     @Override
     public TownDto redactionTown(Town townForRedaction) {
 
-       Town townFind = townRepository.findTownByIdAndName(townForRedaction.getId()
-                ,townForRedaction.getName());
+       Town townFind = townRepository.findTownByIdAndName(townForRedaction.getId(),
+               townForRedaction.getName());
 
         if(townFind == null){
             throw new ResponseStatusException
