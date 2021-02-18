@@ -58,11 +58,6 @@ public class TownServiceImpl implements TownService, TelegramBotService {
             throw new ResponseStatusException
                     (HttpStatus.NOT_FOUND,"City ID not found : "+ townForRedaction.getId());
         }
-
-        if(townRepository.findTownByName(townForRedaction.getName())!=null){
-            throw new ResponseStatusException
-                    (HttpStatus.BAD_REQUEST,"City name was founded : "+ townForRedaction.getName());
-        }
         
         return townMapper
                 .toTownDto(townRepository.save(townForRedaction));
