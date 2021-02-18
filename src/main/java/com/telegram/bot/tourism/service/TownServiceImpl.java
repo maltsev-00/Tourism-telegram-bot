@@ -70,12 +70,12 @@ public class TownServiceImpl implements TownService, TelegramBotService {
     }
 
     @Override
-    public String getInformationAboutTown(String country) {
+    public String getInformationAboutTown(String city) {
 
-        Town townFind = townRepository.findTownByName(country);
+        Town townFind = townRepository.findTownByName(city);
 
         if(townFind == null) {
-            return "Not found information about city : "+country;
+            return "Not found information about city : "+city;
         }
 
         return townFind.getInformationAboutCountry();
