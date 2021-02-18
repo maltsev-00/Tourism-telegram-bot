@@ -28,6 +28,6 @@ public class Town {
 
     @NotEmpty(message = "Information not can be empty")
     @Length(max = 300,  message = "Length information max be 300")
-    private String informationAboutCountry;
+    private String informationAboutCity;
 
 }
