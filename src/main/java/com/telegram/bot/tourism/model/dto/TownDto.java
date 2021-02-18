@@ -18,6 +18,6 @@ public class TownDto {
 
     @NotEmpty
     @Length(max = 300)
-    private String informationAboutCountry;
+    private String informationAboutCity;
     
 }
