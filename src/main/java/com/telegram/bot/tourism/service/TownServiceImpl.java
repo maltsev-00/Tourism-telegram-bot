@@ -28,7 +28,6 @@ public class TownServiceImpl implements TownService, TelegramBotService {
         if(townRepository.findTownByName(newTown.getName()) == null){
 
             Town town = townMapper.toTown(newTown);
-            town.setId(UUID.randomUUID());
 
             return townMapper.toTownDto(townRepository.save(town));
         }
@@ -39,7 +38,7 @@ public class TownServiceImpl implements TownService, TelegramBotService {
     }
 
     @Override
-    public TownDto deleteTown(UUID id) {
+    public TownDto deleteTown(Long id) {
 
         Town townFind = townRepository.findTownById(id);
 

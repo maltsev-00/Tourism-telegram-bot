@@ -4,22 +4,23 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.hibernate.validator.constraints.Length;
-import org.springframework.data.annotation.Id;
-import org.springframework.data.mongodb.core.mapping.Document;
 
+import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
-@Document(value = "cities")
+@Entity
+@Table(name = "towns")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
 public class Town {
 
     @Id
+    @GeneratedValue(strategy =  GenerationType.AUTO)
     @NotNull(message = "Id not can be null")
-    private UUID id;
+    private Long id;
 
     @NotEmpty(message = "Name not can be empty")
     @Length(max = 25, message = "Length name max be 25")

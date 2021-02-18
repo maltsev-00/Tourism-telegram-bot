@@ -9,7 +9,7 @@ public interface TownService {
 
     TownDto addNewTown(TownDto newTown);
 
-    TownDto deleteTown(UUID id);
+    TownDto deleteTown(Long id);
 
     TownDto redactionTown(Town townForRedaction);
 

@@ -8,7 +8,6 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.web.bind.annotation.*;
 
 import javax.validation.Valid;
-import java.util.UUID;
 
 @RestController
 @RequestMapping("town")
@@ -25,7 +24,7 @@ public class TownController {
     }
 
     @DeleteMapping
-    public TownDto deleteTownInDatabase(@RequestParam UUID townId){
+    public TownDto deleteTownInDatabase(@RequestParam Long townId){
         log.info("Delete town in database by ID : " + townId);
         return townService.deleteTown(townId);
     }
