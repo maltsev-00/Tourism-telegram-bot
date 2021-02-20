@@ -1,18 +1,17 @@
 package com.telegram.bot.tourism.service.impl;
 
 
+import com.telegram.bot.tourism.dto.TownDto;
+import com.telegram.bot.tourism.exception.BadRequestException;
+import com.telegram.bot.tourism.exception.ResourceNotFoundException;
 import com.telegram.bot.tourism.mappers.TownMapper;
 import com.telegram.bot.tourism.model.Town;
-
-import com.telegram.bot.tourism.dto.TownDto;
 import com.telegram.bot.tourism.repository.TownRepository;
 import com.telegram.bot.tourism.service.TelegramBotService;
 import com.telegram.bot.tourism.service.TownService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
-import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
-import org.springframework.web.server.ResponseStatusException;
 
 import java.util.UUID;
 
@@ -29,9 +28,9 @@ public class TownServiceImpl implements TownService, TelegramBotService {
     public TownDto addNewTown(TownDto newTown) {
 
         if(townRepository.findTownByName(newTown.getName()) != null){
-            throw new ResponseStatusException
-                    (HttpStatus.BAD_REQUEST, "Town with name : "+ newTown.getName()
-                            +" was founded in database");
+            throw new BadRequestException(
+                    ("Town with name : "+ newTown.getName()
+                            +" was founded in database"));
         }
 
         Town townForSave = townMapper.toTown(newTown);
@@ -48,9 +47,9 @@ public class TownServiceImpl implements TownService, TelegramBotService {
 
         Town townFind = townRepository.findTownById(id);
 
-        if(townFind == null){      
-            throw new ResponseStatusException
-                    (HttpStatus.NOT_FOUND,"Town with id : " + id +" not found ");
+        if(townFind == null){
+            throw new ResourceNotFoundException
+                    ("Town with id : " + id +" not found ");
         }
 
         townRepository.deleteById(townFind.getId());
@@ -64,8 +63,8 @@ public class TownServiceImpl implements TownService, TelegramBotService {
     public TownDto redactionTown(Town townForRedaction) {
 
         if(townRepository.findTownById(townForRedaction.getId()) == null){
-            throw new ResponseStatusException
-                    (HttpStatus.NOT_FOUND,"Town with id : " + townForRedaction.getId() + " not found");
+            throw new ResourceNotFoundException
+                    ("Town with id : " + townForRedaction.getId() + " not found");
         }
 
         townRepository.save(townForRedaction);
@@ -73,7 +72,6 @@ public class TownServiceImpl implements TownService, TelegramBotService {
         log.info("IN redactionTown - town: {} successfully edited", townForRedaction);
 
         return townMapper.toTownDto(townForRedaction);
-
     }
 
     @Override
