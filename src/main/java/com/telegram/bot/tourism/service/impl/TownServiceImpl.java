@@ -27,11 +27,6 @@ public class TownServiceImpl implements TownService, TelegramBotService {
     @Override
     public TownDto addNewTown(TownDto newTown) {
 
-        if(townRepository.findTownByName(newTown.getName()) != null){
-            throw new BadRequestException(
-                    ("Town with name : "+ newTown.getName() +" was founded in database"));
-        }
-
         Town townForSave = townMapper.toTown(newTown);
 
         townRepository.save(townForSave);
@@ -67,9 +62,7 @@ public class TownServiceImpl implements TownService, TelegramBotService {
                     ("Town with id : " + townForRedaction.getId() + " not found");
         }
 
-            townRepository.save(townForRedaction);
-
-
+        townRepository.save(townForRedaction);
 
         log.info("IN redactionTown - town: {} successfully edited", townForRedaction);
 

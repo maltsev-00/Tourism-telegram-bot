@@ -15,12 +15,12 @@ public class TownDto {
 
     @NotEmpty(message = "Name town not can be empty")
     @Length(max = 25, message = "Length name town max be 25")
-    @JsonProperty("name_town")
+    @JsonProperty("name")
     private String name;
 
     @NotEmpty(message = "Information about town not can be empty")
     @Length(max = 300,  message = "Length information about town max be 300")
-    @JsonProperty("information_about_town")
+    @JsonProperty("information")
     private String informationAboutTown;
 
 }

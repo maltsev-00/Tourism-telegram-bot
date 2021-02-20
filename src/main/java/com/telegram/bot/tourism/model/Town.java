@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonProperty;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.checkerframework.common.aliasing.qual.Unique;
 import org.hibernate.validator.constraints.Length;
 
 import javax.persistence.*;
@@ -13,7 +14,7 @@ import java.util.UUID;
 
 
 @Entity
-@Table(name = "towns",uniqueConstraints= @UniqueConstraint(columnNames={"name"}))
+@Table(name = "towns")
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
@@ -26,14 +27,14 @@ public class Town {
 
     @NotEmpty(message = "Name town not can be empty")
     @Length(max = 25, message = "Length name town max be 25")
-    @Column(name = "name")
-    @JsonProperty("name_town")
+    @Column(name = "name",unique = true)
+    @JsonProperty("name")
     private String name;
 
     @NotEmpty(message = "Information about town not can be empty")
     @Length(max = 300,  message = "Length information about town max be 300")
-    @Column(name = "information_about_town")
-    @JsonProperty("information_about_town")
+    @Column(name = "information")
+    @JsonProperty("information")
     private String informationAboutTown;
 
 }
