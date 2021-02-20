@@ -8,6 +8,7 @@ import org.hibernate.validator.constraints.Length;
 import javax.persistence.*;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
+import java.util.UUID;
 
 
 @Entity
@@ -20,7 +21,7 @@ public class Town {
     @Id
     @GeneratedValue(strategy =  GenerationType.AUTO)
     @NotNull(message = "Id not can be null")
-    private Long id;
+    private UUID id;
 
     @NotEmpty(message = "Name not can be empty")
     @Length(max = 25, message = "Length name max be 25")
