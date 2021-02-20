@@ -5,7 +5,7 @@ import com.telegram.bot.tourism.mappers.TownMapper;
 import com.telegram.bot.tourism.model.Town;
 import com.telegram.bot.tourism.model.dto.TownDto;
 import com.telegram.bot.tourism.repository.TownRepository;
-import lombok.Data;
+import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.stereotype.Service;
@@ -14,7 +14,7 @@ import org.springframework.web.server.ResponseStatusException;
 
 
 @Service
-@Data
+@RequiredArgsConstructor
 @Slf4j
 public class TownServiceImpl implements TownService, TelegramBotService {
 
