@@ -29,7 +29,6 @@ public class TownServiceImpl implements TownService, TelegramBotService {
     public TownDto addNewTown(TownDto newTown) {
 
         if(townRepository.findTownByName(newTown.getName()) != null){
-
             throw new ResponseStatusException
                     (HttpStatus.BAD_REQUEST, "Town with name : "+ newTown.getName()
                             +" was founded in database");
@@ -49,8 +48,7 @@ public class TownServiceImpl implements TownService, TelegramBotService {
 
         Town townFind = townRepository.findTownById(id);
 
-        if(townFind == null){
-            
+        if(townFind == null){      
             throw new ResponseStatusException
                     (HttpStatus.NOT_FOUND,"Town with id : " + id +" not found ");
         }
@@ -66,7 +64,6 @@ public class TownServiceImpl implements TownService, TelegramBotService {
     public TownDto redactionTown(Town townForRedaction) {
 
         if(townRepository.findTownById(townForRedaction.getId()) == null){
-            
             throw new ResponseStatusException
                     (HttpStatus.NOT_FOUND,"Town with id : " + townForRedaction.getId() + " not found");
         }
@@ -85,7 +82,6 @@ public class TownServiceImpl implements TownService, TelegramBotService {
         Town townFind = townRepository.findTownByName(townName);
 
         if(townFind == null) {
-            
             return "Not found information about town : " + townName;
         }
 
