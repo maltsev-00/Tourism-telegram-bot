@@ -60,12 +60,16 @@ public class TownServiceImpl implements TownService, TelegramBotService {
     @Override
     public TownDto redactionTown(Town townForRedaction) {
 
-        if(townRepository.findTownById(townForRedaction.getId()) == null){
+        Town town = townRepository.findTownById(townForRedaction.getId());
+
+        if(town == null){
             throw new ResourceNotFoundException
                     ("Town with id : " + townForRedaction.getId() + " not found");
         }
 
-        townRepository.save(townForRedaction);
+            townRepository.save(townForRedaction);
+
+
 
         log.info("IN redactionTown - town: {} successfully edited", townForRedaction);
 

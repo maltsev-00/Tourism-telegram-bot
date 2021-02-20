@@ -14,4 +14,5 @@ public interface TownRepository extends JpaRepository<Town, UUID> {
 
     Town findTownById(UUID id);
 
+    Town findTownByIdAndName(UUID id,String nameTown);
 }
