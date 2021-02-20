@@ -12,7 +12,7 @@ import javax.validation.constraints.NotNull;
 import java.util.UUID;
 
 @RestController
-@RequestMapping("town")
+@RequestMapping("towns")
 @RequiredArgsConstructor
 @Slf4j
 public class TownController {
