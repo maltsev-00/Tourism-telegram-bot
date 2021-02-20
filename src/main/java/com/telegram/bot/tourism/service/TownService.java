@@ -1,7 +1,7 @@
 package com.telegram.bot.tourism.service;
 
 import com.telegram.bot.tourism.model.Town;
-import com.telegram.bot.tourism.model.dto.TownDto;
+import com.telegram.bot.tourism.dto.TownDto;
 
 import java.util.UUID;
 

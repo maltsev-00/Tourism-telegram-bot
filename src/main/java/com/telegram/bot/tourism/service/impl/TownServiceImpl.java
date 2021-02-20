@@ -1,10 +1,13 @@
-package com.telegram.bot.tourism.service;
+package com.telegram.bot.tourism.service.impl;
 
 
 import com.telegram.bot.tourism.mappers.TownMapper;
 import com.telegram.bot.tourism.model.Town;
-import com.telegram.bot.tourism.model.dto.TownDto;
+
+import com.telegram.bot.tourism.dto.TownDto;
 import com.telegram.bot.tourism.repository.TownRepository;
+import com.telegram.bot.tourism.service.TelegramBotService;
+import com.telegram.bot.tourism.service.TownService;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
@@ -28,11 +31,15 @@ public class TownServiceImpl implements TownService, TelegramBotService {
         if(townRepository.findTownByName(newTown.getName()) != null){
 
             throw new ResponseStatusException
-                    (HttpStatus.BAD_REQUEST,"Town with name : "+ newTown.getName()
+                    (HttpStatus.BAD_REQUEST, "Town with name : "+ newTown.getName()
                             +" was founded in database");
         }
 
-        townRepository.save(townMapper.toTown(newTown));
+        Town townForSave = townMapper.toTown(newTown);
+
+        townRepository.save(townForSave);
+
+        log.info("IN addNewTown - town: {} successfully added", townForSave);
 
         return newTown;
     }
@@ -44,10 +51,12 @@ public class TownServiceImpl implements TownService, TelegramBotService {
 
         if(townFind == null){
             throw new ResponseStatusException
-                    (HttpStatus.NOT_FOUND,"City ID not found : "+ id);
+                    (HttpStatus.NOT_FOUND,"Town with id : " + id +" not found ");
         }
 
         townRepository.deleteById(townFind.getId());
+
+        log.info("IN deleteTown - town: {} successfully deleted", townFind);
 
         return townMapper.toTownDto(townFind);
     }
@@ -57,25 +66,27 @@ public class TownServiceImpl implements TownService, TelegramBotService {
 
         if(townRepository.findTownById(townForRedaction.getId()) == null){
             throw new ResponseStatusException
-                    (HttpStatus.NOT_FOUND,"City ID not found : "+ townForRedaction.getId());
+                    (HttpStatus.NOT_FOUND,"Town with id : " + townForRedaction.getId() + " not found");
         }
 
         townRepository.save(townForRedaction);
+
+        log.info("IN redactionTown - town: {} successfully edited", townForRedaction);
 
         return townMapper.toTownDto(townForRedaction);
 
     }
 
     @Override
-    public String getInformationAboutTown(String city) {
+    public String getInformationAboutTown(String townName) {
 
-        Town townFind = townRepository.findTownByName(city);
+        Town townFind = townRepository.findTownByName(townName);
 
         if(townFind == null) {
-            return "Not found information about city : "+city;
+            return "Not found information about town : " + townName;
         }
 
-        return townFind.getInformationAboutCity();
+        return townFind.getInformationAboutTown();
     }
 
 }

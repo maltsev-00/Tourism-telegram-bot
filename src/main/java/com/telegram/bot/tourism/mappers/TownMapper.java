@@ -1,7 +1,7 @@
 package com.telegram.bot.tourism.mappers;
 
 import com.telegram.bot.tourism.model.Town;
-import com.telegram.bot.tourism.model.dto.TownDto;
+import com.telegram.bot.tourism.dto.TownDto;
 import org.mapstruct.Mapper;
 
 @Mapper(componentModel = "spring")
