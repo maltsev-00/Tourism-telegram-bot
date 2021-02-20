@@ -59,8 +59,9 @@ public class TownServiceImpl implements TownService, TelegramBotService {
                     (HttpStatus.NOT_FOUND,"City ID not found : "+ townForRedaction.getId());
         }
         
-        return townMapper
-                .toTownDto(townRepository.save(townForRedaction));
+        townRepository.save(townForRedaction);
+        
+        return townMapper.toTownDto(townForRedaction);
 
     }
 
