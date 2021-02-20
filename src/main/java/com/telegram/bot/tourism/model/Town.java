@@ -25,16 +25,14 @@ public class Town {
     @NotNull(message = "Id not can be null")
     private UUID id;
 
-    @NotEmpty(message = "Name town not can be empty")
-    @Length(max = 25, message = "Length name town max be 25")
+    @Length(min = 5,max = 25, message = "Length name town max be 25, min be 5 ")
     @Column(name = "name",unique = true)
     @JsonProperty("name")
     private String name;
 
-    @NotEmpty(message = "Information about town not can be empty")
-    @Length(max = 300,  message = "Length information about town max be 300")
-    @Column(name = "information")
-    @JsonProperty("information")
+    @Length(min = 5,max = 300,  message = "Length information about town max be 300, min be 5")
+    @Column(name = "information_about_town")
+    @JsonProperty("information_about_town")
     private String informationAboutTown;
 
 }

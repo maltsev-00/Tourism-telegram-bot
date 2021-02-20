@@ -13,14 +13,12 @@ import javax.validation.constraints.NotEmpty;
 @NoArgsConstructor
 public class TownDto {
 
-    @NotEmpty(message = "Name town not can be empty")
-    @Length(max = 25, message = "Length name town max be 25")
+    @Length(min = 5,max = 25, message = "Length name town max be 25, min be 5 ")
     @JsonProperty("name")
     private String name;
 
-    @NotEmpty(message = "Information about town not can be empty")
-    @Length(max = 300,  message = "Length information about town max be 300")
-    @JsonProperty("information")
+    @Length(min = 5,max = 300,  message = "Length information about town max be 300, min be 5")
+    @JsonProperty("information_about_town")
     private String informationAboutTown;
 
 }

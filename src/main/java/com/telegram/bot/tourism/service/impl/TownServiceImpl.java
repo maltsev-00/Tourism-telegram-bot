@@ -2,7 +2,6 @@ package com.telegram.bot.tourism.service.impl;
 
 
 import com.telegram.bot.tourism.dto.TownDto;
-import com.telegram.bot.tourism.exception.BadRequestException;
 import com.telegram.bot.tourism.exception.ResourceNotFoundException;
 import com.telegram.bot.tourism.mappers.TownMapper;
 import com.telegram.bot.tourism.model.Town;
