@@ -23,17 +23,17 @@ public class TownServiceImpl implements TownService, TelegramBotService {
 
     @Override
     public TownDto addNewTown(TownDto newTown) {
+        
+       if(townRepository.findTownByName(newTown.getName()) != null){
 
-        if(townRepository.findTownByName(newTown.getName()) == null){
-           
-            townRepository.save(townMapper.toTown(newTown));
-            
-            return newTown;
+            throw new ResponseStatusException
+                    (HttpStatus.BAD_REQUEST,"Town with name : "+ newTown.getName()
+                            +" was founded in database");
         }
 
-        throw new ResponseStatusException
-                (HttpStatus.BAD_REQUEST,"Town with name : "+ newTown.getName()
-                        +" was founded in database");
+        townRepository.save(townMapper.toTown(newTown));
+
+        return newTown;
     }
 
     @Override
