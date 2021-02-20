@@ -4,12 +4,14 @@ import com.telegram.bot.tourism.model.Town;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.stereotype.Repository;
 
+import java.util.UUID;
+
 
 @Repository
-public interface TownRepository extends JpaRepository<Town, Long> {
+public interface TownRepository extends JpaRepository<Town, UUID> {
 
     Town findTownByName(String nameTown);
 
-    Town findTownById(Long id);
+    Town findTownById(UUID id);
 
 }
