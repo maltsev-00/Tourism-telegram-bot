@@ -29,8 +29,7 @@ public class TownServiceImpl implements TownService, TelegramBotService {
 
         if(townRepository.findTownByName(newTown.getName()) != null){
             throw new BadRequestException(
-                    ("Town with name : "+ newTown.getName()
-                            +" was founded in database"));
+                    ("Town with name : "+ newTown.getName() +" was founded in database"));
         }
 
         Town townForSave = townMapper.toTown(newTown);
@@ -48,8 +47,7 @@ public class TownServiceImpl implements TownService, TelegramBotService {
         Town townFind = townRepository.findTownById(id);
 
         if(townFind == null){
-            throw new ResourceNotFoundException
-                    ("Town with id : " + id +" not found ");
+            throw new ResourceNotFoundException("Town with id : " + id +" not found ");
         }
 
         townRepository.deleteById(townFind.getId());
