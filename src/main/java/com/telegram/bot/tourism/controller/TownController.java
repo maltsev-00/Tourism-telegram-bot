@@ -19,19 +19,19 @@ public class TownController {
 
     @PostMapping
     public TownDto addNewTownInDatabase(@Valid @RequestBody TownDto townDto){
-        log.info("Add new town in database : " + townDto.toString());
+        log.info("Add new town in database : {} ",townDto.toString());
         return townService.addNewTown(townDto);
     }
 
     @DeleteMapping
     public TownDto deleteTownInDatabase(@RequestParam Long townId){
-        log.info("Delete town in database by ID : " + townId);
+        log.info("Delete town in database by ID : {}",townId);
         return townService.deleteTown(townId);
     }
 
     @PutMapping
     public TownDto changeTownInDatabase(@Valid @RequestBody Town town){
-        log.info("Redaction town in database : " + town.toString());
+        log.info("Redaction town in database : {}",town.toString());
         return townService.redactionTown(town);
     }
 
